@@ -13,14 +13,13 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
-
     nombre: {
       type: DataTypes.STRING,
       allowNull: false
     },
     protegida: {
       type: DataTypes.BOOLEAN,
-      allowNull: false
+      defaultValue: false
     }
   }, {
     sequelize,
