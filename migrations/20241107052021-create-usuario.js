@@ -2,34 +2,38 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('producto', {
+    await queryInterface.createTable('usuario', {
       id: {
+        type: Sequelize.UUID,
         allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
       },
-      titulo: {
+      email: {
         type: Sequelize.STRING,
-        defaultValue: "Sin título"
-      },
-      descripcion: {
-        type: Sequelize.TEXT,
-        defaultValue: "Sin descripción"
-      },
-      precio: {
-        type: Sequelize.DECIMAL(10, 2),
+        unique: true,
         allowNull: false
       },
-      archivoid: {
-        allowNull: true,
-        type: Sequelize.INTEGER,
+      passwordhash: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      nombre: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
+      protegido: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false,
+      },
+      rolid: {
+        allowNull: false,
+        type: Sequelize.UUID,
         references: {
-          model: 'archivo',
+          model: 'rol',
           key: 'id'
         },
-        onUpdate: 'CASCADE',
-        onDelete: 'SET NULL'
+        unUpdate: 'CASCADE',
+        unDelete: 'CASCADE'
       },
       createdAt: {
         allowNull: false,
@@ -42,6 +46,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('producto');
+    await queryInterface.dropTable('usuario');
   }
 };
