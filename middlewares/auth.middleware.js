@@ -12,16 +12,17 @@ const Authorize = (rol) => {
             if (!authHeader.startsWith('Bearer '))
                 return next(error);
 
-            const token = authHeader.split(' ')[1];
+            const token = authHeader.split(' ')[1]
 
-            const decodedToken = jwt.verify(token, jwtSecret);
+            const decodedToken = jwt.verify(token, jwtSecret)
 
             if(rol.split(',').indexOf(decodedToken[ClaimTypes.Role]) === -1)
                 return next(error);
 
-            req.decodedToken = decodedToken;
+            req.decodedToken = decodedToken
 
             var minutosRestantes = (decodedToken.exp - (new Date().getTime() / 1000)) / 60;
+            
             if (minutosRestantes < 5) {
                 var nuevoToken = GeneraToken(decodedToken[ClaimTypes.Name], decodedToken[ClaimTypes.GivenName], decodedToken[ClaimTypes.Role])
                 res.header("Set-Authorization", nuevoToken)
@@ -29,7 +30,7 @@ const Authorize = (rol) => {
 
             next();
         } catch (error) {
-            error.statusCode = 401;
+            error.statusCode = 401
             next(error);
         }
     }

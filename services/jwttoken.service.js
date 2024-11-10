@@ -9,7 +9,8 @@ const GeneraToken = (email, nombre, rol) => {
         [ClaimTypes.Role]: rol,
         "iss": "ServidorFeiJwt",
         "aud": "ClientesFeiJwt"
-    }, jwtSecret, {
+    }, 
+        jwtSecret, {
         expiresIn: '20m',
     })
     return token;
