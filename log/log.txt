@@ -1,0 +1,14 @@
+Sun Nov 10 2024 14:10:17 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - jwt malformed
+Sun Nov 10 2024 14:10:56 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - jwt malformed
+Sun Nov 10 2024 14:11:01 GMT-0600 (hora estándar central) - 500 - ::ffff:127.0.0.1 - Anónimo - Table 'mercadolibrenode.usuario' doesn't exist
+Sun Nov 10 2024 14:12:29 GMT-0600 (hora estándar central) - 500 - ::ffff:127.0.0.1 - Anónimo - Table 'mercadolibrenode.usuario' doesn't exist
+Sun Nov 10 2024 14:18:16 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - jwt malformed
+Sun Nov 10 2024 14:22:03 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - Acceso denegado
+Sun Nov 10 2024 14:28:07 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - Cannot read properties of undefined (reading 'startsWith')
+Sun Nov 10 2024 14:28:29 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - Cannot read properties of undefined (reading 'startsWith')
+Sun Nov 10 2024 14:30:16 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - Cannot read properties of undefined (reading 'startsWith')
+Sun Nov 10 2024 14:31:02 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - Acceso denegado
+Sun Nov 10 2024 14:31:54 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - Cannot read properties of undefined (reading 'startsWith')
+Sun Nov 10 2024 14:32:59 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - Acceso denegado
+Sun Nov 10 2024 14:35:31 GMT-0600 (hora estándar central) - 401 - ::1 - Anónimo - Acceso denegado
+Sun Nov 10 2024 14:37:10 GMT-0600 (hora estándar central) - 401 - ::ffff:127.0.0.1 - Anónimo - Acceso denegado

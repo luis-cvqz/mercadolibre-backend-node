@@ -9,7 +9,7 @@ const Authorize = (rol) => {
             const authHeader = req.header('Authorization')
             const error = new Error('Acceso denegado');
             error.statusCode = 401;
-            if (!authHeader.startsWith('Bearer '))
+            if (undefined ===authHeader || !authHeader.startsWith('Bearer '))
                 return next(error);
 
             const token = authHeader.split(' ')[1]
