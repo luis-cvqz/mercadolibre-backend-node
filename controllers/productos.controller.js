@@ -1,4 +1,3 @@
-const { where, Model } = require('sequelize');
 const { producto, categoria, sequelize } = require ('../models')
 const { body, validationResult } = require('express-validator');
 const Op = sequelize.Op
@@ -12,7 +11,7 @@ self.productoValidator = [
 ]
 
 //GET: api/productos
-self.getALL = async function (req, res, next) {
+self.getAll = async function (req, res, next) {
     try{
         //Recibe el parametro de busqueda
         const { s } = req.query
@@ -25,7 +24,7 @@ self.getALL = async function (req, res, next) {
             }
         }
 
-        let data = await producto.findALL({
+        let data = await producto.findAll({
             where: filters, 
             attributes: [['id', 'productoId'], 'titulo', 'descripcion', 'precio', 'archivoid'], 
             include: {
