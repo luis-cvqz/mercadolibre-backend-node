@@ -1,0 +1,31 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJodHRwczovL3NjaGVtYXMueG1sc29hcC5vcmcvd3MvMjAwNS8wNS9pZGVudGl0eS9jbGFpbXMvbmFtZSI6Imd2ZXJhQHV2Lm14IiwiaHR0cHM6Ly9zY2hlbWFzLnhtbHNvYXAub3JnL3dzLzIwMDUvMDUvaWRlbnRpdHkvY2xhaW1zL2dpdmVubmFtZSI6Ikd1aWxsZXJtbyBWZXJhIiwiaHR0cHM6Ly9zY2hlbWFzLm1pY3Jvc29mdC5jb20vd3MvMjAwOC8wNi9pZGVudGl0eS9jbGFpbXMvcm9sZSI6IkFkbWluaXN0cmFkb3IiLCJpc3MiOiJTZXJ2aWRvckZlaUp3dCIsImF1ZCI6IkNsaWVudGVzRmVpSnd0IiwiaWF0IjoxNzMxMjg1MjE5LCJleHAiOjE3MzEyODY0MTl9.zc_Gu1uhAc_WzDTpO3IgOEtTvRptxa0b9upFmisBb30
+
+GET http://localhost:3000/api/categorias
+Authorization: Bearer {{token}}
+
+###
+
+GET http://localhost:3000/api/categorias/2
+
+###
+POST http://localhost:3000/api/categorias
+Authorization: Bearer {{ token }}
+Content-Type: application/json
+
+{
+    "nombre": "Categoria de prueba"
+}
+
+###
+
+PUT http://localhost:3000/api/categorias/16
+Content-Type: application/json
+
+{
+    "categoriaid": 17,
+    "nombre": "Categoria de prueba editada"
+}
+
+###
+
+DELETE http://localhost:3000/api/categorias/20

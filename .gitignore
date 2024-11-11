@@ -85,3 +85,6 @@ firestore_export/
 *.ntvs*
 *.njsproj
 *.sln
+
+#SQL scripts
+*.sql

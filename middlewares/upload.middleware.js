@@ -1,7 +1,7 @@
 const multer = require('multer')
 
 const imageFilter = (req, file, cb) => {
-  if (file.mimetype.startsWith("image/jpeg") && file.originalname.endswith(".jpg")) {
+  if (file.mimetype.startsWith("image/jpeg") && file.originalname.endsWith(".jpg")) {
     cb(null, true)
   } else {
     cb("Solo se permiten imágenes con extensión JPG.", false)

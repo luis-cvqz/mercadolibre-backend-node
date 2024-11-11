@@ -1,6 +1,6 @@
 const fs = require('fs')
 const requestIp = require('request-ip')
-const ClaimType = require('../config/ClaimTypes')
+const ClaimType = require('../config/claimtypes')
 
 const errorHandler = (err, req, res, next) => {
   let mensaje = 'No se ha podido procesar la peticion. Inténtelo nuevamente más tarde.'

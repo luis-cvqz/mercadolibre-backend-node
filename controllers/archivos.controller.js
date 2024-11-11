@@ -8,7 +8,7 @@ let self = {}
 // GET: api/archivos
 self.getAll = async function (req, res, next) {
     try{
-        let data = await archivo.findAll({ atributes: [['id', 'aarchivoId'], 'mime', 'indb', 'nombre', 'size']})
+        let data = await archivo.findAll({ atributes: [['id', 'archivoId'], 'mime', 'indb', 'nombre', 'size']})
         res.status(200).json(data)
     } catch (error){
         next(error)
@@ -51,7 +51,7 @@ self.get = async function (req, res, next) {
 self.create = async function (req, res, next) {
     try{
         console.log(req.file)
-        if(req.file == underfined) return res.status(400).json('El archivo es obligatorio. ');
+        if(req.file == undefined) return res.status(400).json('El archivo es obligatorio. ');
 
         let binario = null;
         let indb = false;
@@ -131,7 +131,7 @@ self.update = async function (req, res, next) {
 
 
 //DELTE: api/archivos/5
-self.dete = async function (req, res, next) {
+self.delete = async function (req, res, next) {
     try{
         const id = req.params.id
         let imagen = await archivo.findByPk(id)
