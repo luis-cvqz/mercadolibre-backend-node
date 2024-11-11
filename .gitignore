@@ -88,3 +88,7 @@ firestore_export/
 
 #SQL scripts
 *.sql
+
+log/
+uploads/
+restclient/
