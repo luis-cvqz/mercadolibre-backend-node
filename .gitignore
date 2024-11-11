@@ -86,8 +86,5 @@ firestore_export/
 *.njsproj
 *.sln
 
-#RESTClient
-restclient
-
 #SQL scripts
 *.sql
