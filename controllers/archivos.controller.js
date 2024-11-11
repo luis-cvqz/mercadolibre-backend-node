@@ -114,7 +114,7 @@ self.update = async function (req, res, next) {
         }, { where: { id: id } })
 
         // Bitacora
-        req.bitacora("archivos.editar", data.id)
+        req.bitacora("archivos.editar", id)
         // Envía la respuesta
         if (data[0] == 0)
             return res.status(404).send()
