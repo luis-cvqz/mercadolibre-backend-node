@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    freezeTableName: false,
+    freezeTableName: true,
     modelName: 'producto',
   });
 
