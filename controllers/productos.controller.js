@@ -1,6 +1,6 @@
-const { producto, categoria, sequelize } = require ('../models')
+const { producto, categoria, Sequelize } = require ('../models')
 const { body, validationResult } = require('express-validator');
-const Op = sequelize.Op
+const Op = Sequelize.Op
 
 let self = {}
 

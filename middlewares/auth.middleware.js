@@ -16,7 +16,7 @@ const Authorize = (rol) => {
 
             const decodedToken = jwt.verify(token, jwtSecret)
 
-            if (rol.split(',').indexOf(decodedToken[ClaimTypes.Role]) === -1)
+            if (rol.split(',').indexOf(decodedToken[ClaimTypes.Role]) == -1)
                 return next(error);
 
             req.decodedToken = decodedToken
