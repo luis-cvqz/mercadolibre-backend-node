@@ -55,7 +55,7 @@ self.create = async function (req, res, next) {
 
         let binario = null;
         let indb = false;
-        if (process.env.FILES_IN_BD == "true") {
+        if (process.env.FILES_IN_DB == "true") {
             binario = fs.readFileSync("uploads/" + req.file.filename)
             fs.existsSync("uploads/" + req.file.filename) && fs.unlinkSync("uploads/" + req.file.filename)
             indb = true;
@@ -98,7 +98,7 @@ self.update = async function (req, res, next) {
 
         let binario = null;
         let indb = false;
-        if (process.env.FILES_IN_BD == "true") {
+        if (process.env.FILES_IN_DB == "true") {
             binario = fs.readFileSync("uploads/" + req.file.filename)
             fs.existsSync("uploads/" + req.file.filename) && fs.unlinkSync("uploads/" + req.file.filename)
             indb = true;
