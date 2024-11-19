@@ -38,10 +38,10 @@ self.get = async function (req, res, next) {
             return res.status(404).send()
 
         let imagen = data.datos
-        if (!data.indb){
+        if (!data.indb) {
             imagen = fs.readFileSync("uploads/" + data.nombre)
         }
-        
+
         res.status(200).contentType(data.mime).send(imagen)
     } catch (error) {
         next(error)
