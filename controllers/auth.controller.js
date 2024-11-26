@@ -1,12 +1,23 @@
 const bcrpt = require('bcrypt');
+const { body, validationResult } = require('express-validator');
 const { usuario, rol, Sequelize } = require('../models');
 const { GeneraToken, TiempoRestanteToken } = require('../services/jwttoken.service');
-const { raw } = require('mysql2');
 
 let self = {}
 
+self.loginValidator = [
+    body('email', 'El campo email es obligatorio').not().isEmpty().isLength({ max: 255 }),
+    body('password', 'El campo password es obligatorio').not().isEmpty().isLength({ max: 255 })
+]
+
 //POST: api/auth
 self.login = async function (req, res, next) {
+    const errors = validationResult(req)
+    if (!errors.isEmpty()) {
+        res.status(400).json(errors)
+        return
+    }
+
     const { email, password } = req.body;
 
     try {
