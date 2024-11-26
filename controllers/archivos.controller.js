@@ -52,7 +52,9 @@ self.get = async function (req, res, next) {
 self.create = async function (req, res, next) {
     try {
         console.log(req.file)
-        if (req.file == undefined) return res.status(400).json('El archivo es obligatorio. ');
+        if (req.file == undefined) {
+            return res.status(400).json('El archivo es obligatorio. ');
+        }
 
         let binario = null;
         let indb = false;
@@ -88,7 +90,9 @@ self.create = async function (req, res, next) {
 // PUT: api/archivos/5
 self.update = async function (req, res, next) {
     try {
-        if (req.file == undefined) return res.status(400).json('El archivo es obligatorio.');
+        if (req.file == undefined) {
+            return res.status(400).json('El archivo es obligatorio.');
+        }
 
         let id = req.params.id
         let imagen = await archivo.findByPk(id)
