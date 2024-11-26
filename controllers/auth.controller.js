@@ -2,7 +2,6 @@ const bcrpt = require('bcrypt');
 const { body, validationResult } = require('express-validator');
 const { usuario, rol, Sequelize } = require('../models');
 const { GeneraToken, TiempoRestanteToken } = require('../services/jwttoken.service');
-const { raw } = require('mysql2');
 
 let self = {}
 

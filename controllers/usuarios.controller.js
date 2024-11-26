@@ -2,7 +2,6 @@ const { usuario, rol, Sequelize } = require('../models')
 const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
-const { Model, where } = require('sequelize')
 
 let self = {}
 

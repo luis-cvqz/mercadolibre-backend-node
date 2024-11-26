@@ -1,7 +1,5 @@
-const { singularize } = require('sequelize/lib/utils')
 const { archivo } = require('../models')
 const fs = require("fs")
-const { where } = require('sequelize')
 
 let self = {}
 
