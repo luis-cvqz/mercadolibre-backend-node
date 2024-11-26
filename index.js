@@ -19,6 +19,7 @@ const swaggerFile = require('./swagger-output.json')
 app.use('/swagger', swaggerUi.serve, swaggerUi.setup(swaggerFile))
 
 app.use(require("./middlewares/bitacora.middleware"))
+app.use(require("./middlewares/syntax.middleware"))
 
 app.use("/api/categorias", require('./routes/categorias.routes'))
 app.use("/api/productos", require('./routes/productos.routes'))
