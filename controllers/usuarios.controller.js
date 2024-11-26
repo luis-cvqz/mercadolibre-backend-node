@@ -2,7 +2,6 @@ const { usuario, rol, Sequelize } = require('../models')
 const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
-const { Model, where } = require('sequelize')
 
 let self = {}
 
@@ -76,12 +75,14 @@ self.create = async function (req, res, next) {
     }
 }
 
-
 //PUT: api/usuarios/email
 self.update = async function (req, res, next) {
     try{
         const errors = validationResult(req)
-        if (!errors.isEmpty()) throw new Error(JSON.stringify(errors))
+        if (!errors.isEmpty()){
+            res.status(400).json(errors)
+            return
+        }
 
         const email = req.params.email
         const rolusuario = await rol.findOne({where: { nombre: req.body.rol}})
