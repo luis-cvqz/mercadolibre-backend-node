@@ -5,8 +5,8 @@ const Op = Sequelize.Op
 let self = {}
 
 self.productoValidator = [
-    body('titulo', 'El campo {0} es obligatorio').not().isEmpty(), 
-    body('descripcion', 'El campo {0} es obligatorio').not().isEmpty(),
+    body('titulo', 'El campo {0} es obligatorio').not().isEmpty().isLength({max: 255}), 
+    body('descripcion', 'El campo {0} es obligatorio').not().isEmpty().isLength({max: 65535}),
     body('precio', 'El campo {0} es obligatorio').not().isEmpty().isDecimal({force_decimal: false}), 
 ]
 
@@ -67,7 +67,10 @@ self.get = async function (req, res, next) {
 self.create = async function (req, res, next) {
     try{
         const errors = validationResult(req)
-        if(!errors.isEmpty()) throw new Error(JSON.stringify(errors));
+        if(!errors.isEmpty()) {
+            res.status(400).json(errors)
+            return
+        }
 
         let data = await producto.create ({
             titulo: req.body.titulo, 
@@ -88,7 +91,10 @@ self.create = async function (req, res, next) {
 self.update = async function (req, res, next) {
     try{
         const errors = validationResult(req)
-        if (!errors.isEmpty()) throw new Error(JSON.stringify(errors))
+        if (!errors.isEmpty()) {
+            res.status(400).json(errors)
+            return
+        }
 
             let id = req.params.id
             let body = req.body
