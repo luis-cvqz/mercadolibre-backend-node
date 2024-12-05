@@ -8,7 +8,9 @@ let self = {}
 self.usuarioValidator = [
     body('email', 'El campo email es obligatorio').not().isEmpty().isLength({ max: 255 }),
     body('nombre', 'El campo nombre es obligatorio').not().isEmpty().isLength({ max: 255 }),
-    body('password', 'El campo password es obligatorio').not().isEmpty().isLength({ max: 255 }),
+    body('password', 'El campo password es obligatorio').not().isEmpty().isLength({ max: 255 })
+        .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^a-zA-Z\d]).{8,12}$/, 
+            'i').withMessage('La contraseña debe tener al menos 8 caracteres, máximo 12 caracteres, una mayúscula, una minúscula, un número y un carácter especial.')
 ]
 
 //GET: api/usuarios
