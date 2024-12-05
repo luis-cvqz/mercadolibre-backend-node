@@ -2,7 +2,6 @@ const { usuario, rol} = require('../models')
 const { body, validationResult } = require('express-validator')
 const bcrypt = require('bcrypt')
 const crypto = require('crypto')
-const { body, validationResult } = require('express-validator');
 
 let self = {}
 
