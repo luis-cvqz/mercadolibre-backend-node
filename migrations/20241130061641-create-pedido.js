@@ -29,6 +29,10 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
+      total: {
+        type: Sequelize.DECIMAL(10, 2),
+        allowNull: false
+      },
       fecha: {
         allowNull: false,
         type: Sequelize.DATE

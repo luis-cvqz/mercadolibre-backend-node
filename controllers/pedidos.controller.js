@@ -13,7 +13,7 @@ self.pedidoValidator = [
 self.getAll = async function (req, res, next) {
   try {
     let data = await pedido.findAll({
-      attributes: [['id', 'pedidoId'], 'usuarioid', 'productoid', 'fecha'],
+      attributes: [['id', 'pedidoId'], 'usuarioid', 'productoid', 'fecha', 'total'],
       include: [
         {
           model: usuario,
@@ -52,6 +52,7 @@ self.create = async function (req, res, next) {
     let data = await pedido.create({
       usuarioid: req.body.usuarioid,
       productoid: req.body.productoid,
+      total: productoEncontrado.precio,
       fecha: new Date()
     })
 
