@@ -5,9 +5,9 @@ const Op = Sequelize.Op
 let self = {}
 
 self.productoValidator = [
-    body('titulo', 'El campo {0} es obligatorio').not().isEmpty().isLength({max: 255}), 
-    body('descripcion', 'El campo {0} es obligatorio').not().isEmpty().isLength({max: 65535}),
-    body('precio', 'El campo {0} es obligatorio').not().isEmpty().isDecimal({force_decimal: false}), 
+    body('titulo', 'El campo titulo es obligatorio').not().isEmpty().isLength({max: 255}), 
+    body('descripcion', 'El campo descrpcion es obligatorio').not().isEmpty().isLength({max: 65535}),
+    body('precio', 'El campo precio es obligatorio').not().isEmpty().isDecimal({force_decimal: false}), 
 ]
 
 //GET: api/productos
