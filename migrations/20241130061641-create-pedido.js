@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
+      email: {
+        type: Sequelize.STRING,
+        allowNull: false
+      },
       usuarioid: {
         type: Sequelize.UUID,
         allowNull: false,

@@ -13,6 +13,10 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
       primaryKey: true
     },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
     usuarioid:{
       type: DataTypes.STRING,
       allowNull: false
