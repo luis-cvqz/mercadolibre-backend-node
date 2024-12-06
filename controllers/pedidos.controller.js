@@ -5,8 +5,17 @@ const Op = Sequelize.Op;
 let self = {}
 
 self.pedidoValidator = [
-  body('usuarioid', 'El campo {0} es obligatorio').not().isEmpty().isLength({ min: 36, max: 36 }),
-  body('productoid', 'El campo {0} es obligatorio').not().isEmpty().isNumeric(),
+  body('pedidos').isArray({ min: 1 }).withMessage('Debe enviar una lista de pedidos.'),
+  body('pedidos.*.email')
+    .not()
+    .isEmpty()
+    .withMessage('El campo email es obligatorio.')
+    .isLength({ max: 255 }),
+  body('pedidos.*.productoid')
+    .not()
+    .isEmpty()
+    .withMessage('El campo productoid es obligatorio.')
+    .isNumeric()
 ]
 
 //GET: api/pedidos
@@ -41,22 +50,47 @@ self.create = async function (req, res, next) {
       return
     }
 
-    let usuarioEncontrado = await usuario.findByPk(req.body.usuarioid)
-    if (!usuarioEncontrado) 
-      return res.status(404).send('Usuario no encontrado')
-    
-    let productoEncontrado = await producto.findByPk(req.body.productoid)
-    if (!productoEncontrado)
-      return res.status(404).send('Producto no encontrado')
-      
-    let data = await pedido.create({
-      usuarioid: req.body.usuarioid,
-      productoid: req.body.productoid,
-      total: productoEncontrado.precio,
-      fecha: new Date()
-    })
+    const pedidos = req.body.pedidos
+    if (!Array.isArray(pedidos)|| pedidos.length === 0)
+      return res.status(400).send('Se requiere al menos un pedido')
 
-    req.bitacora("Pedido.crear", data.id)
+    const resultados = []
+
+    for (const pedido of pedidos) {
+      usuarioEncontrado = await usuario.findOne({ where: { email: pedido.email } });
+
+      if (!usuarioEncontrado) {
+        resultados.push({
+          pedido: pedido,
+          error: "Usuario no encontrado",
+        });
+        continue;
+      }
+
+      let productoEncontrado = await producto.findByPk(pedido.productoid);
+      if (!productoEncontrado) {
+        resultados.push({
+          pedido: pedido,
+          error: "Producto no encontrado",
+        });
+        continue;
+      }
+
+      let nuevoPedido = await pedido.create({
+        nombreusuario: usuarioEncontrado.nombre,
+        usuarioid: pedido.usuarioid,
+        productoid: pedido.productoid,
+        total: productoEncontrado.precio,
+        fecha: new Date(),
+      });
+
+      req.bitacora("Pedido.crear", nuevoPedido.id);
+      resultados.push({
+        pedido: nuevoPedido,
+        error: null,
+      });
+    }
+
     res.status(201).json(data)
   } catch (error) {
     next(error)
