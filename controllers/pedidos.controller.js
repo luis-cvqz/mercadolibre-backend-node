@@ -56,42 +56,41 @@ self.create = async function (req, res, next) {
 
     const resultados = []
 
-    for (const pedido of pedidos) {
-      usuarioEncontrado = await usuario.findOne({ where: { email: pedido.email } });
-
+    for (const itemPedido of pedidos) {
+      var usuarioEncontrado = await usuario.findOne({ where: { email: itemPedido.email } });
       if (!usuarioEncontrado) {
         resultados.push({
-          pedido: pedido,
+          itemPedido: itemPedido,
           error: "Usuario no encontrado",
         });
         continue;
       }
 
-      let productoEncontrado = await producto.findByPk(pedido.productoid);
+      let productoEncontrado = await producto.findByPk(itemPedido.productoid);
       if (!productoEncontrado) {
         resultados.push({
-          pedido: pedido,
+          itemPedido: itemPedido,
           error: "Producto no encontrado",
         });
         continue;
       }
-
+      
       let nuevoPedido = await pedido.create({
-        email: pedido.email,
-        usuarioid: usuarioEncontrado.usuarioid,
-        productoid: pedido.productoid,
+        email: itemPedido.email,
+        usuarioid: usuarioEncontrado.id,
+        productoid: itemPedido.productoid,
         total: productoEncontrado.precio,
         fecha: new Date(),
       });
-
+      
       req.bitacora("Pedido.crear", nuevoPedido.id);
+
       resultados.push({
         pedido: nuevoPedido,
         error: null,
       });
     }
-
-    res.status(201).json(data)
+    res.status(201).json(resultados)
   } catch (error) {
     next(error)
   }
