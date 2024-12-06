@@ -77,8 +77,8 @@ self.create = async function (req, res, next) {
       }
 
       let nuevoPedido = await pedido.create({
-        nombreusuario: usuarioEncontrado.nombre,
-        usuarioid: pedido.usuarioid,
+        email: pedido.email,
+        usuarioid: usuarioEncontrado.usuarioid,
         productoid: pedido.productoid,
         total: productoEncontrado.precio,
         fecha: new Date(),
