@@ -13,6 +13,11 @@ self.usuarioValidator = [
             'i').withMessage('La contraseña debe tener al menos 8 caracteres, máximo 12 caracteres, una mayúscula, una minúscula, un número y un carácter especial.')
 ]
 
+self.usuarioPutValidator = [
+    body('nombre', 'El campo nombre es obligatorio').not().isEmpty().isLength({ max: 255 }),
+    body('rol', 'El campo rol es obligatorio').not().isEmpty().isLength({ max: 255 }),
+]
+
 //GET: api/usuarios
 self.getAll = async function (req, res, next) {
     try{
