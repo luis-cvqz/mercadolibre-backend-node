@@ -13,12 +13,22 @@ beforeAll(() => {
 });
 
 describe('Bitacora API Tests', () => {
-    test('GET /api/bitacora returns actions as JSON', async () => {
-        await api
+    test('GET /api/bitacora returns actions as JSON and with correct structure', async () => {
+        const response = await api
             .get('/api/bitacora')
             .set('Authorization', `Bearer ${token}`)
             .expect(200)
             .expect('Content-Type', /application\/json/);
+
+        expect(Array.isArray(response.body)).toBe(true);
+        response.body.forEach((bitacora) => {
+            expect(bitacora.bitacoraId).toBeDefined(); 
+            expect(bitacora.accion).toBeDefined(); 
+            expect(bitacora.elementoid).toBeDefined(); 
+            expect(bitacora.ip).toBeDefined();
+            expect(bitacora.usuario).toBeDefined(); 
+            expect(bitacora.fecha).toBeDefined(); 
+        });
     });
 
     test('GET /api/bitacora without token fails with 401', async () => {
@@ -26,7 +36,7 @@ describe('Bitacora API Tests', () => {
             .get('/api/bitacora')
             .expect(401);
     });
-
+    
 });
 
 afterAll(() => {
