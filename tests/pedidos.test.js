@@ -50,6 +50,40 @@ describe('Pedidos API Tests', () => {
             .expect(401);
     });
     
+    test('POST /api/pedidos register a list of pedidos', async () => {
+        const pedidosList = {
+            pedidos: [
+                {
+                    email: emailUsuario,
+                    productoid: 1
+                },
+                {
+                    email: emailUsuario,
+                    productoid: 2
+                }
+            ]
+        };
+
+        const response = await api
+            .post('/api/pedidos')
+            .set('Authorization', `Bearer ${tokenUsuario}`)
+            .send(pedidosList)
+            .expect(201);
+
+        expect(Array.isArray(response.body)).toBe(true);
+    });
+
+    test('POST /api/pedidos with empty pedidos', async () => {
+        const pedidosList = {
+            pedidos: []
+        };
+
+        await api
+            .post('/api/pedidos')
+            .set('Authorization', `Bearer ${tokenUsuario}`)
+            .send(pedidosList)
+            .expect(400);
+    });
 });
 
 afterAll(() => {
