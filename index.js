@@ -37,6 +37,8 @@ app.get('*', (req, res) => { res.status(404).send("Recurso no encontrado") })
 const errorhandler = require('./middlewares/errorhandler.middleware')
 app.use(errorhandler)
 
-app.listen(process.env.SERVER_PORT, () => {
+const server = app.listen(process.env.SERVER_PORT, () => {
   console.log(`Aplicación de ejemplo escuchando en el puerto ${process.env.SERVER_PORT}`)
 })
+
+module.exports = {app, server}
