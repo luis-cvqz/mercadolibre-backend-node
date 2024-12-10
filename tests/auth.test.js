@@ -31,6 +31,16 @@ describe('Auth API Tests', () => {
             .expect(404);
     });
 
+    test('GET /api/auth/tiempo returns the time left for the token to expire', async () => {
+        const response = await api
+            .get('/api/auth/tiempo')
+            .set('Authorization', `Bearer ${token}`)
+            .expect(200)
+            .expect('Content-Type', /text\/html/);
+
+        expect(response.text).toBeDefined();
+    });
+
 });
 
 afterAll(() => {
