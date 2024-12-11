@@ -12,7 +12,7 @@ router.get('/:email', Authorize('Administrador'), usuarios.get);
 router.post('/', Authorize('Administrador'), usuarios.usuarioValidator, usuarios.create);
 
 //PUT: api/usuarios/email
-router.put('/:email', Authorize('Administrador'), usuarios.usuarioValidator, usuarios.update);
+router.put('/:email', Authorize('Administrador'), usuarios.usuarioPutValidator, usuarios.update);
 
 //DELETE: api/usuarios/email
 router.delete('/:email', Authorize('Administrador'), usuarios.delete);
