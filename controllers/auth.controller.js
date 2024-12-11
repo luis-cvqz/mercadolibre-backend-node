@@ -36,7 +36,7 @@ self.login = async function (req, res, next) {
             return res.status(404).json({ message: 'Usuario o contraseña incorrectos' })
         }
 
-        token = GeneraToken(data.email, data.nombre, data.rol)
+        let token = GeneraToken(data.email, data.nombre, data.rol)
 
         req.bitacora("usuario.login", data.email)
 

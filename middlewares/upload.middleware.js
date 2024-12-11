@@ -17,6 +17,6 @@ var storage = multer.diskStorage({
   }
 })
 
-var uploadFile = multer({ storage: storage, fileFilter: imageFilter})
+var uploadFile = multer({ storage: storage, fileFilter: imageFilter, limits: { fileSize: 102400 } })
 
 module.exports = uploadFile
